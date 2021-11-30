@@ -25,14 +25,41 @@ def print_screen(profile_a, profile_b, logo_ascii, vs_ascii, banner_ascii):
 
 
 def game_logic(data):
+  score = 0
+  is_loser = False
   profile_a = select_profile(data)
   profile_b = select_profile(data)
   if profile_a == profile_b:
     profile_b = select_profile(data)
   else:
-    user_selection = print_screen(profile_a, profile_b, logo, vs, banner)
-    #if user_selection == "a":
+    while is_loser == False:
+      user_selection = print_screen(profile_a, profile_b, logo, vs, banner)
+      if user_selection == "a":
+        if profile_a["follower_count"] > profile_b["follower_count"]:
+          score+=1
+          print(f"correct! your score is {score}")
+          #select a new random profile for next round of play
+          profile_a = select_profile(data)
+          profile_b = select_profile(data)
+          if profile_a == profile_b:
+            profile_b = select_profile(data) 
+        else:
+          print(f"incorrect answer. final score: {score}")
+          is_loser = True
+      else:
+        if profile_b["follower_count"] > profile_a["follower_count"]:
+          score+=1
+          print(f"correct! your score is {score}")
+          #select a new random profile for next round of play
+          profile_a = select_profile(data) 
+          profile_b = select_profile(data)
+          if profile_a == profile_b:
+            profile_b = select_profile(data)
+        else:
+          print(f"incorrect answer. final score: {score}")
+          is_loser = True
 
+        
     
     
 
