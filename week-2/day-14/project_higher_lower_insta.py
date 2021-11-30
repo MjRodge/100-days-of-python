@@ -8,19 +8,21 @@ def select_profile(profile_data):
 
 #select_profile(game_data.data)
 
+def print_screen(profile_a, profile_b, logo_ascii, vs_ascii):
+  print(f"{logo_ascii}\n")
+  print(f"compare A: {profile_a['name']}, a {profile_a['description']}, from {profile_a['country']}\n")
+  print(f"{vs_ascii}\n")
+  print(f"against B: {profile_b['name']}, a {profile_b['description']}, from {profile_b['country']}\n")
+  input("type A or B: ")
 
 
-
-def game_logic(data, logo_ascii, vs_ascii):
+def game_logic(data):
   profile_a = select_profile(data)
   profile_b = select_profile(data)
   if profile_a == profile_b:
     profile_b = select_profile(data)
   else:
-    print(f"{logo_ascii}\n")
-    print(f"compare A: {profile_a['name']}, a {profile_a['description']}, from {profile_a['country']}\n")
-    print(f"{vs_ascii}\n")
-    print(f"against B: {profile_b['name']}, a {profile_b['description']}, from {profile_b['country']}\n")
-    input("type A or B: ")
+    print_screen(profile_a, profile_b, logo, vs)
+    
 
-game_logic(game_data.data, logo, vs)
+game_logic(game_data.data)
