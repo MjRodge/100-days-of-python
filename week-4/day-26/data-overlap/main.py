@@ -14,6 +14,7 @@ def file_handler(file):
 file1 = file_handler("file1.txt")
 file2 = file_handler("file2.txt")
 
+# check if item is in second list, append to new list if true
 result = [item for item in file1 if item in file2]
 
 # Write your code above 👆
