@@ -21,7 +21,7 @@ total_guessed_correctly = 0
 correct_guesses = []
 while not guessed_all_50:
     # get state guess from user
-    answer = screen.textinput(title=f"{total_guessed_correctly}/50 states correctly guessed", prompt="guess a state name").title()
+    answer = screen.textinput(title=f"{total_guessed_correctly}/50 states correctly guessed", prompt="guess a state").title()
     # check if guessed state answer is in state_list data
     if answer in state_list:
         total_guessed_correctly += 1
