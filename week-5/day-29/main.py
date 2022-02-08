@@ -9,14 +9,21 @@ def save():
     username = username_entry.get()
     password = password_entry.get()
 
-    confirm_write = messagebox.askyesno(title=website, message=f"these are th details entered: \nusername/email: {username}\npassword: {password}\n confirm these are correct")
-
-    if confirm_write:
-        with open("my_pass.txt", "a") as to_txt:
-            to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
-        website_entry.delete(0, END)
-        password_entry.delete(0, END)
-        website_entry.focus()
+    # validate no fields have been left empty
+    if len(website) == 0 or len(username) == 0 or len(password) == 0:
+        messagebox.showerror(title="no empty fields", message="all fields must be filled")
+    else:
+        # only write to file if user confirms correct details
+        confirm_write = messagebox.askyesno(title=website, message=f"these are th details entered: \nusername/email: {username}\npassword: {password}\n confirm these are correct")
+        if confirm_write:
+            # write credentials to txt file
+            with open("my_pass.txt", "a") as to_txt:
+                to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
+            # empty the contents of website/password
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+            # add focus to top entry box, website
+            website_entry.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
