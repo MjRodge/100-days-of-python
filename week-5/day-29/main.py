@@ -11,14 +11,18 @@ def generate_password():
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-    password_list = []
+    # select a range of random letters, symbols, and numbers from data arrays
     selected_letters = [choice(letters) for n in range(0, randint(8, 10))]
     selected_symbols = [choice(symbols) for n in range(0, randint(2, 4))]
     selected_numbers = [choice(numbers) for n in range(0, randint(2, 4))]
+    # combine generated lists into one and shuffle contents
     password_list = selected_letters + selected_symbols + selected_numbers
     shuffle(password_list)
+    # join list into a string
     generated_password = "".join(password_list)
+    # insert password into UI entry box
     password_entry.insert(0, generated_password)
+    # copy password to clipboard
     pyperclip.copy(generated_password)
 
 
