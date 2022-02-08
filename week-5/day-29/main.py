@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -8,13 +9,14 @@ def save():
     username = username_entry.get()
     password = password_entry.get()
 
-    with open("my_pass.txt", "a") as to_txt:
-        to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
+    confirm_write = messagebox.askyesno(title=website, message=f"these are th details entered: \nusername/email: {username}\npassword: {password}\n confirm these are correct")
 
-    website_entry.delete(0, END)
-    password_entry.delete(0, END)
-    website_entry.focus()
-
+    if confirm_write:
+        with open("my_pass.txt", "a") as to_txt:
+            to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
+        website_entry.delete(0, END)
+        password_entry.delete(0, END)
+        website_entry.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
