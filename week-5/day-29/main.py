@@ -3,21 +3,22 @@ from tkinter import messagebox
 from random import randint, choice, shuffle
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
-letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-           'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+def generate_password():
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+               'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-password_list = []
-selected_letters = [choice(letters) for n in range(0, randint(8, 10))]
-selected_symbols = [choice(symbols) for n in range(0, randint(2, 4))]
-selected_numbers = [choice(numbers) for n in range(0, randint(2, 4))]
-password_list = selected_letters + selected_symbols + selected_numbers
-shuffle(password_list)
-generated_password = "".join(password_list)
+    password_list = []
+    selected_letters = [choice(letters) for n in range(0, randint(8, 10))]
+    selected_symbols = [choice(symbols) for n in range(0, randint(2, 4))]
+    selected_numbers = [choice(numbers) for n in range(0, randint(2, 4))]
+    password_list = selected_letters + selected_symbols + selected_numbers
+    shuffle(password_list)
+    generated_password = "".join(password_list)
+    password_entry.insert(0, generated_password)
 
-print(generated_password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
@@ -74,7 +75,7 @@ password_label = Label(text="password: ")
 password_label.grid(row=3, column=0)
 password_entry = Entry(width=18)
 password_entry.grid(row=3, column=1)
-password_button = Button(text="generate password")
+password_button = Button(text="generate password", command=generate_password)
 password_button.grid(row=3, column=2)
 
 # configure submit button UI element
