@@ -15,9 +15,8 @@ selected_symbols = [choice(symbols) for n in range(0, randint(2, 4))]
 selected_numbers = [choice(numbers) for n in range(0, randint(2, 4))]
 password_list = selected_letters + selected_symbols + selected_numbers
 shuffle(password_list)
-generated_password = ""
-for char in password_list:
-    generated_password += char
+generated_password = "".join(password_list)
+
 print(generated_password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
