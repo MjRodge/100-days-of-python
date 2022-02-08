@@ -4,13 +4,16 @@ from tkinter import *
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    to_txt = open("my_pass.txt", "a")
-    to_txt.write(f"{website_entry.get()}\n")
-    to_txt.write(f"{username_entry.get()}\n")
-    to_txt.write(f"{password_entry.get()}\n")
-    to_txt.close()
+    website = website_entry.get()
+    username = username_entry.get()
+    password = password_entry.get()
+
+    with open("my_pass.txt", "a") as to_txt:
+        to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
+
     website_entry.delete(0, END)
     password_entry.delete(0, END)
+    website_entry.focus()
 
 
 
