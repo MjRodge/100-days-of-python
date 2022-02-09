@@ -15,3 +15,7 @@ else:
 finally:
     file.close()
     print("file was closed - this always runs")
+
+
+
+
