@@ -1,0 +1,5 @@
+website: gitlab | username: test@email.com | password: thisisnotmygitlabpassword
+website: udemy | username: test@email.com | password: 3F4P2XQZi0$!zw
+website: facebook | username: test@email.com | password: w0&1*Fu3CW#J3+JSj
+website: twitter | username: test@email.com | password: (7h!9PGgI++Dr6G
+website: instagram | username: test@email.com | password: 0!sD&ClDRfD7
