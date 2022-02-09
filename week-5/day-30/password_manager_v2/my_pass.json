@@ -1,6 +1,14 @@
 {
+    "facebook": {
+        "username": "test@email.com",
+        "password": "foAA53NyJ%WH!1k"
+    },
     "twitter": {
         "username": "test@email.com",
-        "password": "ANcaBhd#+9Ml2W"
+        "password": "Wh()3DiL9Me*C3"
+    },
+    "myspace": {
+        "username": "test@email.com",
+        "password": "P$M$$3KhQ5!mZKHs"
     }
 }
