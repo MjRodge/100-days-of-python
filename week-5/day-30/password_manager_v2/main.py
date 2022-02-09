@@ -67,9 +67,14 @@ def save():
 
 # ------------------------- SEARCH FOR WEBSITE ----------------------------- #
 def search():
-    with open("my_pass.json", "r") as credential_data_file:
-        credential_data = json.load(credential_data_file)
+    try:
+        with open("my_pass.json", "r") as credential_data_file:
+            credential_data = json.load(credential_data_file)
+    except FileNotFoundError:
+        messagebox.showerror(title="credential error", message="no credentials saved, please enter account details")
+    else:
         print(credential_data)
+
 
 
 # ----------------------------   UI SETUP    ------------------------------- #
