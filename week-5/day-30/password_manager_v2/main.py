@@ -65,8 +65,14 @@ def save():
             # add focus to top entry box, website
             website_entry.focus()
 
+# ------------------------- SEARCH FOR WEBSITE ----------------------------- #
+def search():
+    with open("my_pass.json", "r") as credential_data_file:
+        credential_data = json.load(credential_data_file)
+        print(credential_data)
 
-# ---------------------------- UI SETUP ------------------------------- #
+
+# ----------------------------   UI SETUP    ------------------------------- #
 # configure window
 window = Tk()
 window.title("password-manager")
@@ -84,7 +90,7 @@ website_label.grid(row=1, column=0)
 website_entry = Entry(width=18)
 website_entry.focus()
 website_entry.grid(row=1, column=1)
-website_search_button = Button(text="search", width=15)
+website_search_button = Button(text="search", width=15, command=search)
 website_search_button.grid(row=1, column=2)
 
 # configure email/username UI elements
