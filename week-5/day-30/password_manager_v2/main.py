@@ -81,9 +81,11 @@ canvas.grid(row=0, column=1)
 # configure website UI elements
 website_label = Label(text="website: ")
 website_label.grid(row=1, column=0)
-website_entry = Entry(width=35)
+website_entry = Entry(width=18)
 website_entry.focus()
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry.grid(row=1, column=1)
+website_search_button = Button(text="search", width=15)
+website_search_button.grid(row=1, column=2)
 
 # configure email/username UI elements
 username_label = Label(text="email/username: ")
