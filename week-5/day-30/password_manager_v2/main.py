@@ -44,18 +44,26 @@ def save():
         messagebox.showerror(title="no empty fields", message="all fields must be filled")
     else:
         # write credentials to txt file
-        with open("my_pass.json", "r") as json_data_file:
-            # json.dump(new_data, json_data_file, indent=4)
-            data = json.load(json_data_file)
+        try:
+            # try to read "my_pass.json"
+            # will fail if file does not exist
+            with open("my_pass.json", "r") as json_data_file:
+                data = json.load(json_data_file)
+        except FileNotFoundError:
+            # write new_data to a new file if it does not exist
+            with open("my_pass.json", "w") as json_data_file:
+                json.dump(new_data, json_data_file, indent=4)
+        else:
+            # continue with updating json if it already exists
             data.update(new_data)
-        with open("my_pass.json", "w") as json_data_file:
-            json.dump(data, json_data_file, indent=4)
-            # to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
-        # empty the contents of website/password
-        website_entry.delete(0, END)
-        password_entry.delete(0, END)
-        # add focus to top entry box, website
-        website_entry.focus()
+            with open("my_pass.json", "w") as json_data_file:
+                json.dump(data, json_data_file, indent=4)
+        finally:
+            # empty the contents of website/password
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+            # add focus to top entry box, website
+            website_entry.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
