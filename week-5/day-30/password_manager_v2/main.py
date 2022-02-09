@@ -4,10 +4,13 @@ from random import randint, choice, shuffle
 import pyperclip
 import json
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v',
+               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+               'R',
                'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
@@ -65,6 +68,7 @@ def save():
             # add focus to top entry box, website
             website_entry.focus()
 
+
 # ------------------------- SEARCH FOR WEBSITE ----------------------------- #
 def search():
     try:
@@ -73,8 +77,14 @@ def search():
     except FileNotFoundError:
         messagebox.showerror(title="credential error", message="no credentials saved, please enter account details")
     else:
-        print(credential_data)
-
+        searched_account = website_entry.get()
+        matched_credential = {website: account for (website, account) in credential_data.items() if website == searched_account}
+        if matched_credential != {}:
+            matched_username = matched_credential[searched_account]["username"]
+            matched_password = matched_credential[searched_account]["password"]
+            messagebox.showinfo(title=searched_account, message=f"account details for: {searched_account}\nusername: {matched_username}\npassword: {matched_password}")
+        else:
+            messagebox.showerror(title="no account found", message="these credentials have not been found, please try another")
 
 
 # ----------------------------   UI SETUP    ------------------------------- #
