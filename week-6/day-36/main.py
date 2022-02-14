@@ -35,7 +35,8 @@ day_change = abs(yesterday_closing_price-day_before_closing_price)
 print(day_change)
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
-
+percentage_difference = day_change/((yesterday_closing_price+day_before_closing_price)/2)*100
+print(percentage_difference)
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
