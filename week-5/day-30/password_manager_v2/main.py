@@ -2,11 +2,15 @@ from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v',
+               'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+               'R',
                'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
@@ -31,18 +35,33 @@ def save():
     website = website_entry.get()
     username = username_entry.get()
     password = password_entry.get()
+    new_data = {
+        website: {
+            "username": username,
+            "password": password,
+        }
+    }
 
     # validate no fields have been left empty
     if len(website) == 0 or len(username) == 0 or len(password) == 0:
         messagebox.showerror(title="no empty fields", message="all fields must be filled")
     else:
-        # only write to file if user confirms correct details
-        confirm_write = messagebox.askyesno(title=website,
-                                            message=f"these are th details entered: \nusername/email: {username}\npassword: {password}\n confirm these are correct")
-        if confirm_write:
-            # write credentials to txt file
-            with open("my_pass.txt", "a") as to_txt:
-                to_txt.write(f"website: {website} | username: {username} | password: {password}\n")
+        # write credentials to txt file
+        try:
+            # try to read "my_pass.json"
+            # will fail if file does not exist
+            with open("my_pass.json", "r") as json_data_file:
+                data = json.load(json_data_file)
+        except FileNotFoundError:
+            # write new_data to a new file if it does not exist
+            with open("my_pass.json", "w") as json_data_file:
+                json.dump(new_data, json_data_file, indent=4)
+        else:
+            # continue with updating json if it already exists
+            data.update(new_data)
+            with open("my_pass.json", "w") as json_data_file:
+                json.dump(data, json_data_file, indent=4)
+        finally:
             # empty the contents of website/password
             website_entry.delete(0, END)
             password_entry.delete(0, END)
@@ -50,7 +69,25 @@ def save():
             website_entry.focus()
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# ------------------------- SEARCH FOR WEBSITE ----------------------------- #
+def search():
+    try:
+        with open("my_pass.json", "r") as credential_data_file:
+            credential_data = json.load(credential_data_file)
+    except FileNotFoundError:
+        messagebox.showerror(title="credential error", message="no credentials saved, please enter account details")
+    else:
+        searched_account = website_entry.get()
+        matched_credential = {website: account for (website, account) in credential_data.items() if website == searched_account}
+        if matched_credential != {}:
+            matched_username = matched_credential[searched_account]["username"]
+            matched_password = matched_credential[searched_account]["password"]
+            messagebox.showinfo(title=searched_account, message=f"account details for: {searched_account}\nusername: {matched_username}\npassword: {matched_password}")
+        else:
+            messagebox.showerror(title="no account found", message="these credentials have not been found, please try another")
+
+
+# ----------------------------   UI SETUP    ------------------------------- #
 # configure window
 window = Tk()
 window.title("password-manager")
@@ -65,9 +102,11 @@ canvas.grid(row=0, column=1)
 # configure website UI elements
 website_label = Label(text="website: ")
 website_label.grid(row=1, column=0)
-website_entry = Entry(width=35)
+website_entry = Entry(width=18)
 website_entry.focus()
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry.grid(row=1, column=1)
+website_search_button = Button(text="search", width=15, command=search)
+website_search_button.grid(row=1, column=2)
 
 # configure email/username UI elements
 username_label = Label(text="email/username: ")
