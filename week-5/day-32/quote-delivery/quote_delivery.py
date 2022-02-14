@@ -1,5 +1,6 @@
 import smtplib
 import pandas
+import datetime as dt
 from secrets import my_email, my_password
 
 # configure smtp connection with gmail account
@@ -17,3 +18,6 @@ random_quote = quotes.sample()
 author = random_quote["Author"].loc[random_quote.index[0]]
 quote_text = random_quote["Quote"].loc[random_quote.index[0]]
 print(f"author: {author}, message: {quote_text}")
+
+now = dt.datetime.now()
+print(now)
