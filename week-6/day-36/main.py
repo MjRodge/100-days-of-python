@@ -41,15 +41,16 @@ print(percentage_difference)
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 news_params = {
     "q": STOCK_NAME,
-    "apiKey": NEWS_API
+    "apiKey": NEWS_API,
+    "pageSize": 3  # limit response to three articles
 }
 if percentage_difference > 0:
     news_response = requests.get(url=NEWS_ENDPOINT, params=news_params)
     news_response.raise_for_status()
-    news_content = news_response.json()
+    news_content = news_response.json()["articles"]
     print("get news")
     print(news_content)
-    ## STEP 2: https://newsapi.org/ 
+    # STEP 2: https://newsapi.org/
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 #TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
