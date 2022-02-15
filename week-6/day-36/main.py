@@ -1,5 +1,5 @@
 import requests
-from keys import STOCK_API, NEWS_API
+from keys import STOCK_API, NEWS_API, TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, FROM_PHONE_NUMBER, TO_PHONE_NUMBER
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -47,9 +47,9 @@ news_params = {
 if percentage_difference > 0:
     news_response = requests.get(url=NEWS_ENDPOINT, params=news_params)
     news_response.raise_for_status()
-    news_content = news_response.json()["articles"]
+    news_articles = news_response.json()["articles"]
     print("get news")
-    print(news_content)
+    print(news_articles)
     # STEP 2: https://newsapi.org/
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
@@ -62,6 +62,8 @@ if percentage_difference > 0:
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
+for x in range(0, len(news_articles)):
+    print(f"headline: {news_articles[x]['title']}\n --brief: {news_articles[x]['description']}")
 
 #TODO 9. - Send each article as a separate message via Twilio. 
 
