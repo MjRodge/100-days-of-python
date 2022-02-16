@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime, time
-from keys import NUTRITIONIX_API_KEY, NUTRITIONIX_APP_ID, SHEETY_ENDPOINT
+from keys import NUTRITIONIX_API_KEY, NUTRITIONIX_APP_ID, SHEETY_ENDPOINT, SHEETY_BEARER
 
 
 # take input from user to pass to nutritionix api
@@ -50,7 +50,10 @@ for x in exercise_data:
             "calories": x["nf_calories"],
         }
     }
-    sheety_post = requests.post(url=SHEETY_ENDPOINT, json=sheety_payload)
+    sheety_header = {
+        "Authorization": "Bearer ihequfbwodhwidhneqwufbewufhbedhwadoieqhfoefhwiof"
+    }
+    sheety_post = requests.post(url=SHEETY_ENDPOINT, headers=sheety_header, json=sheety_payload)
     sheety_post.raise_for_status()
     print(sheety_post.text)
     # print(f"activity: {x['user_input']}, duration: {x['duration_min']}, calories: {x['nf_calories']}")
