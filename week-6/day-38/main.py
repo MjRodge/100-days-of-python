@@ -1,6 +1,8 @@
 import requests
 from keys import NUTRITIONIX_API_KEY, NUTRITIONIX_APP_ID
 
+exercise = input("enter the activities that you did: ")
+
 headers = {
     "x-app-id": NUTRITIONIX_APP_ID,
     "x-app-key": NUTRITIONIX_API_KEY,
@@ -8,7 +10,7 @@ headers = {
 }
 
 params = {
-    "query": "ran 3 miles",
+    "query": exercise,
     "gender": "male",
     "weight_kg": 72.5,
     "height_cm": 182.64,
