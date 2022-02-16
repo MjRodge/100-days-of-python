@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, time
 from keys import NUTRITIONIX_API_KEY, NUTRITIONIX_APP_ID
 
 # take input from user to pass to nutritionix api
@@ -26,3 +27,12 @@ response.raise_for_status()
 # returned data from nutritionix api
 data = response.json()
 print(data)
+
+# using python datetime to build date/time variables in correct format for submission to sheety api
+date = datetime.now()
+year = date.strftime("%Y")
+month = date.strftime("%m")
+day = date.strftime("%d")
+formatted_date = f"{day}/{month}/{year}"
+time = date.strftime("%H:%M:%S")
+
