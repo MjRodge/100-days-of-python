@@ -25,8 +25,12 @@ params = {
 response = requests.post(url="https://trackapi.nutritionix.com/v2/natural/exercise", headers=headers, json=params)
 response.raise_for_status()
 # returned data from nutritionix api
-data = response.json()
-print(data)
+exercise_data = response.json()["exercises"]
+
+for x in exercise_data:
+    print(f"activity: {x['user_input']}, duration: {x['duration_min']}, calories: {x['nf_calories']}")
+
+
 
 # using python datetime to build date/time variables in correct format for submission to sheety api
 date = datetime.now()
