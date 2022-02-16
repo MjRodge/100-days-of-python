@@ -1,1 +1,0 @@
-NUTRITIONIX_API_KEY = ""
