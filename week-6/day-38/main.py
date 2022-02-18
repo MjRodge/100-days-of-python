@@ -39,7 +39,7 @@ day = date.strftime("%d")
 formatted_date = f"{day}/{month}/{year}"
 time = date.strftime("%H:%M:%S")
 
-
+# send api call to sheety for each workout to store information in google sheets
 for x in exercise_data:
     sheety_payload = {
         "workout": {
@@ -51,7 +51,7 @@ for x in exercise_data:
         }
     }
     sheety_header = {
-        "Authorization": "Bearer ihequfbwodhwidhneqwufbewufhbedhwadoieqhfoefhwiof"
+        "Authorization": SHEETY_BEARER
     }
     sheety_post = requests.post(url=SHEETY_ENDPOINT, headers=sheety_header, json=sheety_payload)
     sheety_post.raise_for_status()
