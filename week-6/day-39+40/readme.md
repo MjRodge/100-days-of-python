@@ -19,4 +19,4 @@
 4. prepare `secrets.py` and `.gitignore` for storage of secret tokens
 5. sign up for kiwi flight search api
 6. add tequila-api (kiwi flight search) key to `keys.py`
-7. 
+7. make a _**GET**_ request to sheety api, pulling in all data from google sheets document
