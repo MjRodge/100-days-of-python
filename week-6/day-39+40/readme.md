@@ -22,4 +22,4 @@
 7. make a _**GET**_ request to sheety api, pulling in all data from google sheets document in `data_manager.py`
 8. pass through sheety response data to `main.py` and save to a variable
 9. check each row of data from sheety for empty `iataCode` value, replace empties with "TESTING" for now
-10. 
+10. should a row be empty, pass the name of the city returned by the sheety api call to `flight_search.py`
