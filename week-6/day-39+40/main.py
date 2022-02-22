@@ -9,4 +9,4 @@ for x in sheet_data["prices"]:
     if x["iataCode"] == "":
         flight_search = FlightSearch(x["city"])
         print(f"i am an instance of flightsearch class, i shall search for {flight_search.city_name}")
-        # x["iataCode"] = "TESTING"
+        data.update_iata(iata_code="TESTING", row_id=x["id"])
