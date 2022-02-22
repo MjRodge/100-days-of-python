@@ -11,3 +11,9 @@
 - Kiwi Partners Flight Search API - https://partners.kiwi.com/
 - Tequila Flight Search API Documentation - https://tequila.kiwi.com/portal/docs/tequila_api
 - Twilio SMS API - https://www.twilio.com/docs/sms
+
+## steps taken
+1. prepare google sheet data store by copying starting spreadsheet from course material
+2. link google sheet to sheety api, and enable _**put**_ permissions to allow updating of rows
+3. change sheety authentication method to _**bearer token**_
+4. prepare `secrets.py` and `.gitignore` for storage of secret tokens
