@@ -21,4 +21,5 @@
 6. add tequila-api (kiwi flight search) key to `keys.py`
 7. make a _**GET**_ request to sheety api, pulling in all data from google sheets document in `data_manager.py`
 8. pass through sheety response data to `main.py` and save to a variable
-9. 
+9. check each row of data from sheety for empty `iataCode` value, replace empties with "TESTING" for now
+10. 

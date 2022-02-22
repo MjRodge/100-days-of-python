@@ -4,4 +4,10 @@ from data_manager import DataManager
 data = DataManager()
 sheet_data = data.sheet_api_data
 
-print(sheet_data)
+for x in sheet_data["prices"]:
+    if x["iataCode"] == "":
+        print(x["city"])
+        x["iataCode"] = "TESTING"
+    print(x["iataCode"])
+
+# print(sheet_data)
