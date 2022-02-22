@@ -5,8 +5,12 @@ from flight_search import FlightSearch
 data = DataManager()
 sheet_data = data.sheet_api_data
 
+# loop through all rows returned by sheety api call in DataManager class
 for x in sheet_data["prices"]:
+    # run code below for each empty cell in google sheets
     if x["iataCode"] == "":
+        # create an instance of FlightSearch class for each missing IATA code
         flight_search = FlightSearch(x["city"])
         print(f"i am an instance of flightsearch class, i shall search for {flight_search.city_name}")
-        data.update_iata(iata_code="TESTING", row_id=x["id"])
+        flight_search.get_iata_code()
+        # data.update_iata(iata_code="TESTING", row_id=x["id"])
