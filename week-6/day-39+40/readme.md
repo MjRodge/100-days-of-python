@@ -17,3 +17,6 @@
 2. link google sheet to sheety api, and enable _**put**_ permissions to allow updating of rows
 3. change sheety authentication method to _**bearer token**_
 4. prepare `secrets.py` and `.gitignore` for storage of secret tokens
+5. sign up for kiwi flight search api
+6. add tequila-api (kiwi flight search) key to `keys.py`
+7. 

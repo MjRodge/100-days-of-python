@@ -1,1 +1,3 @@
 SHEETY_BEARER = ""
+
+TEQUILA_API = ""
