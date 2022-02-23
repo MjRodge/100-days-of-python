@@ -1,7 +1,8 @@
 import requests
 from keys import TEQUILA_API
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_GET_QUERY = "/locations/query"
+TEQUILA_AITA_QUERY = "/locations/query"
+TEQUILA_LOCATION_QUERY = "/search"
 
 class FlightSearch:
     #This class is responsible for talking to the Flight Search API.
@@ -16,9 +17,10 @@ class FlightSearch:
         headers = {
             "apikey": TEQUILA_API
         }
-        response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_GET_QUERY}", params=payload, headers=headers)
+        response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_AITA_QUERY}", params=payload, headers=headers)
         response.raise_for_status()
         returned_data = response.json()["locations"]
-        print(returned_data[0]["code"])
+        return returned_data[0]["code"]
+
 
 

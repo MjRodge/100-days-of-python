@@ -12,5 +12,5 @@ for x in sheet_data["prices"]:
         # create an instance of FlightSearch class for each missing IATA code
         flight_search = FlightSearch(x["city"])
         print(f"i am an instance of flightsearch class, i shall search for {flight_search.city_name}")
-        flight_search.get_iata_code()
-        # data.update_iata(iata_code="TESTING", row_id=x["id"])
+        missing_iata = flight_search.get_iata_code()
+        data.update_iata(iata_code=missing_iata, row_id=x["id"])
