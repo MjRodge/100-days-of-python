@@ -25,4 +25,6 @@
 10. should a row be empty, pass the name of the city returned by the sheety api call to `flight_search.py`
 11. created a method within the `DataManager` class that sends a _**PUT**_ request to sheety api for filling in blank cells in google sheets
 12. created a method within `FlightSearch` class to send a _**GET**_ request to tequila api, searching for any missing IATA city codes
-13. 
+13. built `datetime` objects in the correct format to submit to the tequila flight search api
+14. built json payload to submit to tequila flight search api
+15. refactored flight search to use `FlightData` class as an intermediary to hold flight search data

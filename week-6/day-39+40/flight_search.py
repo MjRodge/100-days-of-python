@@ -27,15 +27,23 @@ class FlightSearch:
         return returned_data[0]["code"]
 
     def get_flight_details(self):
+        date_from = self.today.strftime("%d/%m/%Y")
+        date_to = self.six_months.strftime("%d/%m/%Y")
         payload = {
             "fly_from": "YYZ",
             "fly_to": self.city_name,
-            "date_from": self.today.strftime("%d/%m/%Y"),
-            "date_to": self.six_months.strftime("%d/%m/%Y")
+            "date_from": date_from,
+            "date_to": date_to,
+            "flight_type": "round",
+            "nights_in_dst_from": 7,
+            "nights_in_dst_to": 28,
+            "curr": "CAD",
+            "max_stopovers": 0,
+            "limit": 2
         }
-        # response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_LOCATION_QUERY}", params=payload, headers=headers)
-        # response.raise_for_status()
-        # print(response.json())
-        print(payload["date_to"])
+        response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_LOCATION_QUERY}", params=payload, headers=headers)
+        response.raise_for_status()
+        print(response.json()["data"])
+
 
 

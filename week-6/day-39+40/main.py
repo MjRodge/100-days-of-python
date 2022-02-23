@@ -1,6 +1,7 @@
 #This file will need to use the DataManager,FlightSearch, FlightData, NotificationManager classes to achieve the program requirements.
 from data_manager import DataManager
 from flight_search import FlightSearch
+from flight_data import FlightData
 
 data = DataManager()
 sheet_data = data.sheet_api_data
@@ -15,5 +16,5 @@ for x in sheet_data["prices"]:
         missing_iata = flight_search.get_iata_code()
         data.update_iata(iata_code=missing_iata, row_id=x["id"])
 
-flight_test = FlightSearch("toronto")
-flight_test.get_flight_details()
+flight_test = FlightData()
+flight_test.get_flights()
