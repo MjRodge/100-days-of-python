@@ -19,6 +19,5 @@ class DataManager:
             }
         }
         request = requests.put(url=f"{SHEETY_ENDPOINT}/{row_id}", json=sheety_payload, headers=headers)
-        print(request.json)
 
 

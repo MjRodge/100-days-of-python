@@ -12,7 +12,6 @@ for x in sheet_data["prices"]:
     if x["iataCode"] == "":
         # create an instance of FlightSearch class for each missing IATA code
         flight_search = FlightSearch(x["city"])
-        print(f"i am an instance of flightsearch class, i shall search for {flight_search.city_name}")
         missing_iata = flight_search.get_iata_code()
         data.update_iata(iata_code=missing_iata, row_id=x["id"])
     # for each row in sheet, create an instance of FlightData class
@@ -20,4 +19,5 @@ for x in sheet_data["prices"]:
     # call FlightData method to fetch all flight data
     flight_test.get_flights()
     # call FlightData method to fetch the cheapest flight price to each city in sheet
-    print(flight_test.get_cheapest_flight())
+    cheapest_flight = flight_test.get_cheapest_flight()
+    print(f"for your trip to {x['city']}, the cheapest fare is: ${cheapest_flight}CAD")

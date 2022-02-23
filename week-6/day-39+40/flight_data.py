@@ -10,7 +10,7 @@ class FlightData:
     def get_flights(self):
         flight_search = FlightSearch(self.departure_aita_code)
         flight_data = flight_search.get_flight_details()
-        print(flight_data)
+        return flight_data
 
     def get_cheapest_flight(self):
         flight_search = FlightSearch(self.departure_aita_code)
