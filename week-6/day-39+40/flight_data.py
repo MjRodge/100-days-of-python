@@ -11,3 +11,12 @@ class FlightData:
         flight_search = FlightSearch(self.departure_aita_code)
         flight_data = flight_search.get_flight_details()
         print(flight_data)
+
+    def get_cheapest_flight(self):
+        flight_search = FlightSearch(self.departure_aita_code)
+        flight_data = flight_search.get_flight_details()
+        cheapest_flight = 0
+        for x in flight_data:
+            if x["price"] > cheapest_flight:
+                cheapest_flight = x["price"]
+        return cheapest_flight

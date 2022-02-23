@@ -29,3 +29,4 @@
 14. built json payload to submit to tequila flight search api
 15. refactored flight search to use `FlightData` class as an intermediary to hold flight search data
 16. removed hard coded destination value and passed each location from google sheet into flight search function
+17. built a method in `FlightData` class to find the cheapest flight returned by tequila api for each location saved in sheet

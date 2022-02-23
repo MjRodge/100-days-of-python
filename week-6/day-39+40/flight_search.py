@@ -43,7 +43,7 @@ class FlightSearch:
         }
         response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_LOCATION_QUERY}", params=payload, headers=headers)
         response.raise_for_status()
-        print(response.json()["data"])
+        return response.json()["data"]
 
 
 
