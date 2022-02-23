@@ -20,4 +20,5 @@ for x in sheet_data["prices"]:
     flight_test.get_flights()
     # call FlightData method to fetch the cheapest flight price to each city in sheet
     cheapest_flight = flight_test.get_cheapest_flight()
-    print(f"for your trip to {x['city']}, the cheapest fare is: ${cheapest_flight}CAD")
+    if cheapest_flight > 5 and cheapest_flight < x["lowestPrice"]:
+        print(f"for your trip to {x['city']}, the cheapest fare is: ${cheapest_flight}CAD")

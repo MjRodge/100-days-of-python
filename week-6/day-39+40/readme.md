@@ -31,3 +31,4 @@
 16. removed hard coded destination value and passed each location from google sheet into flight search function
 17. built a method in `FlightData` class to find the cheapest flight returned by tequila api for each location saved in sheet
 18. created a notification function withing the `NotificationManager` class to handle sending text messages when flights drop below price target
+19. compared results of spreadsheet price alert threshold against flight api searches, will print the lowest if price returned is below $1000CAD
