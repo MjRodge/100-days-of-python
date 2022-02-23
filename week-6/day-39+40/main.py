@@ -2,6 +2,7 @@
 from data_manager import DataManager
 from flight_search import FlightSearch
 from flight_data import FlightData
+from notification_manager import NotificationManager
 
 data = DataManager()
 sheet_data = data.sheet_api_data
@@ -21,4 +22,6 @@ for x in sheet_data["prices"]:
     # call FlightData method to fetch the cheapest flight price to each city in sheet
     cheapest_flight = flight_test.get_cheapest_flight()
     if cheapest_flight > 5 and cheapest_flight < x["lowestPrice"]:
-        print(f"for your trip to {x['city']}, the cheapest fare is: ${cheapest_flight}CAD")
+        notification = NotificationManager()
+        message = f"for your trip to {x['city']}, the cheapest fare is: ${cheapest_flight}CAD"
+        notification.send_text_notification(message)
