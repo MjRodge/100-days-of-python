@@ -13,8 +13,8 @@ class FlightSearch:
     #This class is responsible for talking to the Flight Search API.
     def __init__(self, city_name):
         self.city_name = city_name
-        self.today = datetime.now()
-        self.six_months = self.today + timedelta(days=180)
+        self.tomorrow = datetime.now() + timedelta(days=1)
+        self.six_months = self.tomorrow + timedelta(days=180)
 
     def get_iata_code(self):
         payload = {
@@ -27,7 +27,7 @@ class FlightSearch:
         return returned_data[0]["code"]
 
     def get_flight_details(self):
-        date_from = self.today.strftime("%d/%m/%Y")
+        date_from = self.tomorrow.strftime("%d/%m/%Y")
         date_to = self.six_months.strftime("%d/%m/%Y")
         payload = {
             "fly_from": "YYZ",
@@ -39,7 +39,6 @@ class FlightSearch:
             "nights_in_dst_to": 28,
             "curr": "CAD",
             "max_stopovers": 0,
-            "limit": 2
         }
         response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_LOCATION_QUERY}", params=payload, headers=headers)
         response.raise_for_status()
