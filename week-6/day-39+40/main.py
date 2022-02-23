@@ -14,3 +14,6 @@ for x in sheet_data["prices"]:
         print(f"i am an instance of flightsearch class, i shall search for {flight_search.city_name}")
         missing_iata = flight_search.get_iata_code()
         data.update_iata(iata_code=missing_iata, row_id=x["id"])
+
+flight_test = FlightSearch("toronto")
+flight_test.get_flight_details()

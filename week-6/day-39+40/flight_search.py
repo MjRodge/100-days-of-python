@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, timedelta
 from keys import TEQUILA_API
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
 TEQUILA_AITA_QUERY = "/locations/query"
@@ -12,6 +13,8 @@ class FlightSearch:
     #This class is responsible for talking to the Flight Search API.
     def __init__(self, city_name):
         self.city_name = city_name
+        self.today = datetime.now()
+        self.six_months = self.today + timedelta(days=180)
 
     def get_iata_code(self):
         payload = {
@@ -23,7 +26,16 @@ class FlightSearch:
         returned_data = response.json()["locations"]
         return returned_data[0]["code"]
 
-
-
+    def get_flight_details(self):
+        payload = {
+            "fly_from": "YYZ",
+            "fly_to": self.city_name,
+            "date_from": self.today.strftime("%d/%m/%Y"),
+            "date_to": self.six_months.strftime("%d/%m/%Y")
+        }
+        # response = requests.get(url=f"{TEQUILA_ENDPOINT}{TEQUILA_LOCATION_QUERY}", params=payload, headers=headers)
+        # response.raise_for_status()
+        # print(response.json())
+        print(payload["date_to"])
 
 
