@@ -14,3 +14,5 @@
 3. use class selectors to grab the song title text from the scraped html
 4. use list comprehension to strip all html characters and store only song title text in a list
 5. select and append the number 1 song of the week, as this was not selected by the class selector for other 99 songs
+6. log into the [spotify developer portal](https://developer.spotify.com/dashboard/applications) and create a new application
+7. create `keys.py` and `.gitignore` to save spotify api tokens
