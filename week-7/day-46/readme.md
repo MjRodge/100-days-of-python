@@ -6,7 +6,9 @@
 - authorise with the spotify api, and use the song titles scraped to build a playlist
 
 ## apis used
-- [list here]
+- [spotipy](https://spotipy.readthedocs.io/en/2.19.0/) for authorising and manipulating the spotify api
+- [spotify](https://developer.spotify.com/dashboard/login) for creating a playlist within my user account
+- [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) was used to scrape the billboard 100 website
 
 ## steps taken
 1. take a date in format yyyy-mm-dd from the user, and save to a variable
