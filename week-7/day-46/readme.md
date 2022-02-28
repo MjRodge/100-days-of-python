@@ -16,3 +16,4 @@
 5. select and append the number 1 song of the week, as this was not selected by the class selector for other 99 songs
 6. log into the [spotify developer portal](https://developer.spotify.com/dashboard/applications) and create a new application
 7. create `keys.py` and `.gitignore` to save spotify api tokens
+8. used spotipy package to authorise application with spotify api and return my account's personal id
