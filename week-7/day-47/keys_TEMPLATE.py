@@ -1,0 +1,3 @@
+FROM_ADDR = ""
+TO_ADDR = ""
+EMAIL_PASSWORD = ""
