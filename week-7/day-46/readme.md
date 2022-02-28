@@ -10,3 +10,4 @@
 
 ## steps taken
 1. take a date in format yyyy-mm-dd from the user, and save to a variable
+2. use `beautifulsoup` to scrape the html of the billboard 100 website for the desired date
