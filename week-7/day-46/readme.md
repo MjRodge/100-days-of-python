@@ -17,3 +17,4 @@
 6. log into the [spotify developer portal](https://developer.spotify.com/dashboard/applications) and create a new application
 7. create `keys.py` and `.gitignore` to save spotify api tokens
 8. used spotipy package to authorise application with spotify api and return my account's personal id
+9. used spotipy connection to search for the song titles saved in web scrape in spotify
