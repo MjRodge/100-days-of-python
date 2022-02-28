@@ -11,3 +11,6 @@
 ## steps taken
 1. take a date in format yyyy-mm-dd from the user, and save to a variable
 2. use `beautifulsoup` to scrape the html of the billboard 100 website for the desired date
+3. use class selectors to grab the song title text from the scraped html
+4. use list comprehension to strip all html characters and store only song title text in a list
+5. select and append the number 1 song of the week, as this was not selected by the class selector for other 99 songs
