@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 AMAZON_URL = "https://www.amazon.ca/Apple-MacBook-14-inch-8‑core-14‑core/dp/B09JQSLL92/ref=sr_1_1"
 
@@ -9,4 +10,5 @@ HEADERS = {
 
 response = requests.get(url=AMAZON_URL, headers=HEADERS)
 amazon_html = response.text
-print(amazon_html)
+amazon_soup = BeautifulSoup(amazon_html, "html.parser")
+print(amazon_soup)
