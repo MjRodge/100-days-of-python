@@ -11,7 +11,8 @@ HEADERS = {
 response = requests.get(url=AMAZON_URL, headers=HEADERS)
 amazon_html = response.text
 amazon_soup = BeautifulSoup(amazon_html, "html.parser")
-dollars = amazon_soup.find(name="span", class_="a-price-whole").get_text()
+dollars = amazon_soup.find(name="span", class_="a-price-whole").get_text().replace(",", "")
 cents = amazon_soup.find(name="span", class_="a-price-fraction").get_text()
-price = f"{dollars}{cents}"
-print(price)
+price = float(f"{dollars}{cents}")
+
+print(type(price))
