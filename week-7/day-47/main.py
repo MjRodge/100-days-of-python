@@ -21,12 +21,14 @@ dollars = amazon_soup.find(name="span", class_="a-price-whole").get_text().repla
 cents = amazon_soup.find(name="span", class_="a-price-fraction").get_text()
 price = float(f"{dollars}{cents}")
 
-message = "Subject: Amazon\n\nmessage body"
+product_title = amazon_soup.find(name="span", id="productTitle").get_text()
 
+message = f"Subject: Amazon Price Alert\n\n{product_title} is on sale!\nPurchase here: {AMAZON_URL}"
+print(message)
 
-email_connection = smtplib.SMTP("smtp.gmail.com", 587)
-email_connection.starttls()
-email_connection.login(user=FROM_ADDR, password=EMAIL_PASSWORD)
-email_connection.sendmail(from_addr=FROM_ADDR, to_addrs=TO_ADDR, msg=message)
+# email_connection = smtplib.SMTP("smtp.gmail.com", 587)
+# email_connection.starttls()
+# email_connection.login(user=FROM_ADDR, password=EMAIL_PASSWORD)
+# email_connection.sendmail(from_addr=FROM_ADDR, to_addrs=TO_ADDR, msg=message)
 
 print(type(price))
