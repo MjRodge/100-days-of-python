@@ -11,8 +11,10 @@ search = driver.find_element_by_name("q")
 documentation_link = driver.find_element_by_css_selector(".documentation-widget a")
 # print(documentation_link.text)
 
-python_events = driver.find_elements_by_xpath("/html/body/div/div[3]/div/section/div[2]/div[2]/div/ul/li")
-for x in python_events:
-    print(x.text)
+
+python_event_times = driver.find_elements_by_css_selector(".event-widget time")
+for time in python_event_times:
+    print(time.text)
+
 
 driver.quit()
