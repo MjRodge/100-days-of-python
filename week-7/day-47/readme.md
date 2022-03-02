@@ -10,3 +10,4 @@
 3. build `headers` dictionary to send to `requests` module
 4. put returned html content into `beautifulsoup`
 5. isolated the elements containing the price of the item
+6. when price is lower than user-selected threshold, `smtplib` is used to send an emailalert to the user's inbox
