@@ -13,8 +13,11 @@ documentation_link = driver.find_element_by_css_selector(".documentation-widget 
 
 
 python_event_times = driver.find_elements_by_css_selector(".event-widget time")
-for time in python_event_times:
-    print(time.text)
+# for time in python_event_times:
+#     print(time.text)
 
+python_event_names = driver.find_elements_by_css_selector(".events-widget li a")
+for name in python_event_names:
+    print(name)
 
 driver.quit()
