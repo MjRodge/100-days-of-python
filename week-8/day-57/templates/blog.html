@@ -5,6 +5,9 @@
         <title>blog</title>
     </head>
     <body>
-        <h1>blog</h1>
+        {% for blog_post in posts: %}
+            <h1>{{ blog_post["title"] }}</h1>
+            <h2>{{ blog_post["subtitle"] }}</h2>
+        {% endfor %}
     </body>
 </html>
