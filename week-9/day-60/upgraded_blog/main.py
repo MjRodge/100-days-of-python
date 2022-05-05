@@ -9,9 +9,16 @@ blog_posts = requests.get("https://api.npoint.io/bf0deee3eaa99ae6599c").json()
 def home():
     return render_template("index.html", posts=blog_posts)
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    if request.method == "GET":
+        return render_template("contact.html")
+    else:
+        name = request.form["name"]
+        email = request.form["email"]
+        phone = request.form["phone"]
+        message = request.form["message"]
+        return f"thank you {name}, we will email you here: {email}"
 
 @app.route("/about")
 def about():
@@ -25,13 +32,6 @@ def get_post(post_id):
             requested_post = blog_post
     return render_template("post.html", post=requested_post)
 
-@app.route("/form-entry", methods=["POST"])
-def receive_data():
-    name = request.form["name"]
-    email = request.form["email"]
-    phone = request.form["phone"]
-    message = request.form["message"]
-    return f"thank you {name}, we will email you here: {email}"
 
 if __name__ == "__main__":
     app.run(debug=True)
