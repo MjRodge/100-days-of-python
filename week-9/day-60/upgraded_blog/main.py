@@ -12,13 +12,13 @@ def home():
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "GET":
-        return render_template("contact.html")
+        return render_template("contact.html", msg_sent=False)
     else:
         name = request.form["name"]
         email = request.form["email"]
         phone = request.form["phone"]
         message = request.form["message"]
-        return f"thank you {name}, we will email you here: {email}"
+        return render_template("contact.html", msg_sent=True)
 
 @app.route("/about")
 def about():
