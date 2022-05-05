@@ -27,12 +27,11 @@ def get_post(post_id):
 
 @app.route("/form-entry", methods=["POST"])
 def receive_data():
-    #name = request.form["name"]
-    #email = request.form["email"]
-    #phone = request.form["phone"]
-    #message = request.form["message"]
-    #return f"thank you {name}, we will email you here: {email}"
-    return f"this is form contents: {request.form}"
+    name = request.form["name"]
+    email = request.form["email"]
+    phone = request.form["phone"]
+    message = request.form["message"]
+    return f"thank you {name}, we will email you here: {email}"
 
 if __name__ == "__main__":
     app.run(debug=True)
