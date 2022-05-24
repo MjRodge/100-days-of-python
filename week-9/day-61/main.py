@@ -24,7 +24,7 @@ class LoginForm(FlaskForm):
             InputRequired()
         ]
     )
-    submit = SubmitField("submit")
+    submit = SubmitField("login")
 
 
 
