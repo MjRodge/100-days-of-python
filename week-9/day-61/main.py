@@ -4,6 +4,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import InputRequired, Length, Email
 
 app = Flask(__name__)
+app.secret_key = "a-secret-key-for-flask-that-id-usually-store-in-a-secret-store-or-env-file"
 
 class LoginForm(FlaskForm):
     email = StringField(
@@ -34,7 +35,8 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    login_form = LoginForm()
+    return render_template("login.html", form=login_form)
 
 
 if __name__ == '__main__':
