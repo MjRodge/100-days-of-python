@@ -8,15 +8,15 @@ app.secret_key = "a-secret-key-for-flask-that-id-usually-store-in-a-secret-store
 
 class LoginForm(FlaskForm):
     email = StringField(
-        "Email",
-        [
+        label="Email",
+        validators=[
             Email(message=("not a valid email address")),
             InputRequired()
         ]
     )
     password = PasswordField(
-        "Password",
-        [
+        label="Password",
+        validators=[
             Length(
                 min=8,
                 message=("password should be at least 8 characters")
@@ -24,7 +24,7 @@ class LoginForm(FlaskForm):
             InputRequired()
         ]
     )
-    submit = SubmitField("login")
+    submit = SubmitField(label="login")
 
 
 
