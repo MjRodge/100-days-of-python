@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, Email
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
             InputRequired()
         ]
     )
-    password = StringField(
+    password = PasswordField(
         "Password",
         [
             Length(
