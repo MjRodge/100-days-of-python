@@ -1,6 +1,31 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_wtf import FlaskForm
+from wtforms import StringField, DecimalRangeField
+from wtforms.validators import InputRequired, Length
 
 app = Flask(__name__)
+
+class BookForm(FlaskForm):
+    title = StringField(
+        label="Book Title", 
+        validators=[
+            InputRequired(), 
+            Length(min=3, max=100)
+            ]
+        )
+    author = StringField(
+        label="Author", 
+        validators=[
+            InputRequired(), 
+            Length(min=3, max=100)
+            ]
+        )
+    rating = DecimalRangeField(
+        label="Rating",
+        validators=[
+            InputRequired()
+        ]
+    )
 
 all_books = []
 
@@ -10,7 +35,7 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/add")
+@app.route("/add", methods=["POST"])
 def add():
     return render_template("add.html")
 
