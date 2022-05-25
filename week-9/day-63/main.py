@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import InputRequired, Length
+from wtforms.validators import InputRequired, Length, NumberRange
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "a-secret-key-for-flask-that-id-usually-store-in-a-secret-store-or-env-file"
@@ -24,7 +24,8 @@ class BookForm(FlaskForm):
     rating = IntegerField(
         label="Rating",
         validators=[
-            InputRequired()
+            InputRequired(),
+            NumberRange(min=1, max=10)
         ]
     )
 
