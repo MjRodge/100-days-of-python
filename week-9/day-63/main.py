@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalRangeField
+from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Length
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ class BookForm(FlaskForm):
             Length(min=3, max=100)
             ]
         )
-    rating = DecimalRangeField(
+    rating = IntegerField(
         label="Rating",
         validators=[
             InputRequired()
