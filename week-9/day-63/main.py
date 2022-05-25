@@ -2,9 +2,26 @@ from flask import Flask, redirect, render_template, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Length, NumberRange
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "a-secret-key-for-flask-that-id-usually-store-in-a-secret-store-or-env-file"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///book-collection.db"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+
+class BookData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(250), unique=True, nullable=False)
+    author = db.Column(db.String(250), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    def __repr__(self):
+        return f'<Book {self.title}>'
+db.create_all()
+
 
 class BookForm(FlaskForm):
     title = StringField(
@@ -28,6 +45,7 @@ class BookForm(FlaskForm):
             NumberRange(min=1, max=10)
         ]
     )
+
 
 all_books = []
 
