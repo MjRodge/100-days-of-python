@@ -6,12 +6,19 @@
 </head>
 <body>
     <form action="" method="POST">
-        <label>Book Name</label>
-        <input type="text">
-        <label>Book Author</label>
-        <input type="text">
-        <label>Rating</label>
-        <input type="text">
+        {{ form.csrf_token }}
+        <p>
+            {{ form.title.label }}
+            {{ form.title(size=30) }}
+        </p>
+        <p>
+            {{ form.author.label }}
+            {{ form.author(size=30) }}
+        </p>
+        <p>
+            {{ form.rating.label }}
+            {{ form.rating(size=30) }}
+        </p>
         <button type="submit">Add Book</button>
     </form>
 </body>
