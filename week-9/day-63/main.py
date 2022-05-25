@@ -40,6 +40,13 @@ def home():
 @app.route("/add", methods=["POST", "GET"])
 def add():
     book_form = BookForm()
+    if book_form.validate_on_submit():
+        all_books.append({
+            "author": book_form.author.data,
+            "title": book_form.title.data,
+            "rating": book_form.rating.data
+        })
+        print(all_books)
     return render_template("add.html", form=book_form)
 
 if __name__ == "__main__":
