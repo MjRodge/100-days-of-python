@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, url_for
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Length, NumberRange
@@ -46,7 +46,7 @@ def add():
             "title": book_form.title.data,
             "rating": book_form.rating.data
         })
-        return render_template("index.html", books=all_books)
+        return redirect(url_for("home"))
     return render_template("add.html", form=book_form)
 
 if __name__ == "__main__":
