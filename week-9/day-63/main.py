@@ -59,11 +59,18 @@ def home():
 def add():
     book_form = BookForm()
     if book_form.validate_on_submit():
-        all_books.append({
-            "author": book_form.author.data,
-            "title": book_form.title.data,
-            "rating": book_form.rating.data
-        })
+        # all_books.append({
+        #     "author": book_form.author.data,
+        #     "title": book_form.title.data,
+        #     "rating": book_form.rating.data
+        # })
+        new_book = BookData(
+            title=book_form.title.data, 
+            author=book_form.author.data, 
+            rating=book_form.rating.data
+        )
+        db.session.add(new_book)
+        db.session.commit()
         return redirect(url_for("home"))
     return render_template("add.html", form=book_form)
 
