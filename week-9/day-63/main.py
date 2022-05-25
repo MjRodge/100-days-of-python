@@ -4,6 +4,7 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Length
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "a-secret-key-for-flask-that-id-usually-store-in-a-secret-store-or-env-file"
 
 class BookForm(FlaskForm):
     title = StringField(
@@ -37,7 +38,8 @@ def home():
 
 @app.route("/add", methods=["POST", "GET"])
 def add():
-    return render_template("add.html")
+    book_form = BookForm()
+    return render_template("add.html", form=book_form)
 
 if __name__ == "__main__":
     app.run(debug=True)
