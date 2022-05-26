@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Length, NumberRange
@@ -47,11 +47,10 @@ class BookForm(FlaskForm):
     )
 
 
-all_books = []
-
 
 @app.route('/')
 def home():
+    all_books = db.session.query(BookData).all()
     return render_template("index.html", books=all_books)
 
 
@@ -73,6 +72,19 @@ def add():
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("add.html", form=book_form)
+
+@app.route("/edit", methods=["POST", "GET"])
+def edit():
+    if request.method == "POST":
+        book_id = request.form["id"]
+        book_to_update = BookData.query.get(book_id)
+        book_to_update.rating = request.form["rating"]
+        db.session.commit()
+        return redirect(url_for('home'))
+    book_id = request.args.get('id')
+    book_selected = BookData.query.get(book_id)
+    return render_template("edit.html", book=book_selected)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
