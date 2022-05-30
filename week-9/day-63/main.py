@@ -86,15 +86,14 @@ def edit():
     book_selected = BookData.query.get(book_id)
     return render_template("edit.html", book=book_selected)
 
-@app.route("/delete", methods=["POST"])
+@app.route("/delete")
 def delete():
-    if request.method == "POST":
-        book_id = request.form["id"]
-        book_to_delete = BookData.query.get(book_id)
-        db.session.delete(book_to_delete)
-        db.session.commit()
-    all_books = db.session.query(BookData).all()
-    return render_template("index.html", books=all_books)
+    book_id = request.args.get("id")
+    book_to_delete = BookData.query.get(book_id)
+    db.session.delete(book_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 
 if __name__ == "__main__":
