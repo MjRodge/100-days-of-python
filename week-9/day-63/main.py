@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, redirect, render_template, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
@@ -84,6 +85,16 @@ def edit():
     book_id = request.args.get('id')
     book_selected = BookData.query.get(book_id)
     return render_template("edit.html", book=book_selected)
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    if request.method == "POST":
+        book_id = request.form["id"]
+        book_to_delete = BookData.query.get(book_id)
+        db.session.delete(book_to_delete)
+        db.session.commit()
+    all_books = db.session.query(BookData).all()
+    return render_template("index.html", books=all_books)
 
 
 if __name__ == "__main__":
