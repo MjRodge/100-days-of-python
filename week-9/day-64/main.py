@@ -23,7 +23,7 @@ class Movie(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     ranking = db.Column(db.Integer, nullable=False)
     review = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
+    img_link = db.Column(db.String(250), nullable=False)
     def __repr__(self):
         return f'<Movie {self.title}>'
 db.create_all()
