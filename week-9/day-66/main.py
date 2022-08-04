@@ -4,6 +4,8 @@ from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import random
 
+from sqlalchemy import column
+
 app = Flask(__name__)
 
 ##Connect to Database
@@ -26,6 +28,10 @@ class Cafe(db.Model):
     can_take_calls = db.Column(db.Boolean, nullable=False)
     coffee_price = db.Column(db.String(250), nullable=True)
 
+    # convert objects to dictionaries for easier, less error-prone, more extensible json api returns
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 
 @app.route("/")
 def home():
@@ -39,20 +45,8 @@ def random_cafe():
     # generate random cafe item
     random_cafe = random.choice(all_cafes)
     print(random_cafe)
-    # return index to avoid error for time being
-    return jsonify(cafe={
-        "id": random_cafe.id,
-        "name": random_cafe.name,
-        "map_url": random_cafe.map_url,
-        "img_url": random_cafe.img_url,
-        "location": random_cafe.location,
-        "seats": random_cafe.seats,
-        "has_toilet": random_cafe.has_toilet,
-        "has_wifi": random_cafe.has_wifi,
-        "has_sockets": random_cafe.has_sockets,
-        "can_take_calls": random_cafe.can_take_calls,
-        "coffee_price": random_cafe.coffee_price,
-    })
+    # convert object to dict and return json 
+    return jsonify(cafe=random_cafe.to_dict())
     
 
 ## HTTP GET - Read Record
