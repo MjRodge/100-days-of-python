@@ -44,14 +44,15 @@ def random_cafe():
     all_cafes = db.session.query(Cafe).all()
     # generate random cafe item
     random_cafe = random.choice(all_cafes)
-    print(random_cafe)
     # convert object to dict and return json 
     return jsonify(cafe=random_cafe.to_dict())
     
 
 @app.route("/all", methods=["GET"])
 def get_all_cafes():
+    # get all cafes with database query
     all_cafes = db.session.query(Cafe).all()
+    # convert each item into dict and push into json object
     return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
 
 ## HTTP GET - Read Record
