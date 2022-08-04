@@ -32,10 +32,11 @@ def home():
 
 
 @app.route("/random", methods=["GET"])
-def random():
+def random_cafe():
     # get all cafes with database query
     all_cafes = db.session.query(Cafe).all()
-    print(all_cafes)
+    random_cafe = random.choice(all_cafes)
+    print(random_cafe)
     # return index to avoid error for time being
     return render_template("index.html")
     
