@@ -1,5 +1,7 @@
+from crypt import methods
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import random
 
 app = Flask(__name__)
 
@@ -26,6 +28,15 @@ class Cafe(db.Model):
 
 @app.route("/")
 def home():
+    return render_template("index.html")
+
+
+@app.route("/random", methods=["GET"])
+def random():
+    # get all cafes with database query
+    all_cafes = db.session.query(Cafe).all()
+    print(all_cafes)
+    # return index to avoid error for time being
     return render_template("index.html")
     
 
