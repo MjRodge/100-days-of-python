@@ -55,6 +55,13 @@ def get_all_cafes():
     # convert each item into dict and push into json object
     return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
 
+
+@app.route("/search", methods=["GET"])
+def search_for_cafe():
+    args = request.args
+    print(args)
+    return args 
+
 ## HTTP GET - Read Record
 
 ## HTTP POST - Create Record
