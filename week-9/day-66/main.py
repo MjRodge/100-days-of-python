@@ -33,11 +33,15 @@ class Cafe(db.Model):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
 
+# render index page at website root
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
+## HTTP GET - Read Record
+
+# GET random cafe
 @app.route("/random", methods=["GET"])
 def random_cafe():
     # get all cafes with database query
@@ -48,6 +52,7 @@ def random_cafe():
     return jsonify(cafe=random_cafe.to_dict())
     
 
+# GET all cafes
 @app.route("/all", methods=["GET"])
 def get_all_cafes():
     # get all cafes with database query
@@ -56,6 +61,7 @@ def get_all_cafes():
     return jsonify(cafes=[cafe.to_dict() for cafe in all_cafes])
 
 
+# GET search for cafe by location
 @app.route("/search", methods=["GET"])
 def search_for_cafe():
     args = request.args
@@ -67,7 +73,6 @@ def search_for_cafe():
     else:
         return jsonify(error={"not found": "no cafe found at that location."})
 
-## HTTP GET - Read Record
 
 ## HTTP POST - Create Record
 
