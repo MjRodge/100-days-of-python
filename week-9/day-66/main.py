@@ -76,6 +76,26 @@ def search_for_cafe():
 
 ## HTTP POST - Create Record
 
+# POST add new cafe
+@app.route("/add", methods=["POST"])
+def add_new_cafe():
+    args = request.args
+    new_cafe = Cafe(
+        id = args.get("id"),
+        name = args.get("name"),
+        map_url = args.get("map_url"),
+        img_url = args.get("img_url"),
+        location = args.get("loc"),
+        seats = args.get("seats"),
+        has_toilet = args.get("has_wc"),
+        has_wifi = args.get("wifi"),
+        has_sockets = args.get("plug"),
+        can_take_calls = args.get("calls"),
+        coffee_price = args.get("price"),
+    )
+    print(new_cafe.name)
+    return new_cafe.name
+
 ## HTTP PUT/PATCH - Update Record
 
 ## HTTP DELETE - Delete Record
