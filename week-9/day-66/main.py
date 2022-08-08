@@ -79,22 +79,24 @@ def search_for_cafe():
 # POST add new cafe
 @app.route("/add", methods=["POST"])
 def add_new_cafe():
-    args = request.args
+    form = request.form
     new_cafe = Cafe(
-        id = args.get("id"),
-        name = args.get("name"),
-        map_url = args.get("map_url"),
-        img_url = args.get("img_url"),
-        location = args.get("loc"),
-        seats = args.get("seats"),
-        has_toilet = args.get("has_wc"),
-        has_wifi = args.get("wifi"),
-        has_sockets = args.get("plug"),
-        can_take_calls = args.get("calls"),
-        coffee_price = args.get("price"),
+        id = form.get("id"),
+        name = form.get("name"),
+        map_url = form.get("map_url"),
+        img_url = form.get("img_url"),
+        location = form.get("loc"),
+        seats = form.get("seats"),
+        has_toilet = bool(form.get("has_wc")),
+        has_wifi = bool(form.get("wifi")),
+        has_sockets = bool(form.get("plug")),
+        can_take_calls = bool(form.get("calls")),
+        coffee_price = form.get("price"),
     )
+    db.session.add(new_cafe)
+    db.session.commit()
     print(new_cafe.name)
-    return new_cafe.name
+    return jsonify(response={"success": "new cafe succesfully submitted"})
 
 ## HTTP PUT/PATCH - Update Record
 
