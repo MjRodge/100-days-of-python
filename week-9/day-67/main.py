@@ -73,9 +73,18 @@ def make_post():
     return render_template("make-post.html", form=post_form)
 
 
-@app.route("/edit_post")
+@app.route("/edit-post")
 def edit_post():
-    pass
+    post_to_edit = request.args.get("post_id")
+    requested_post = db.session.query(BlogPost).get(post_to_edit)
+    edit_form = CreatePostForm(
+        title=requested_post.title,
+        subtitle=requested_post.subtitle,
+        img_url=requested_post.img_url,
+        author=requested_post.author,
+        body=requested_post.body
+    )
+    return render_template("make-post.html", form=edit_form)
 
 
 @app.route("/about")
