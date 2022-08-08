@@ -120,12 +120,17 @@ def update_coffee_price(cafe_id):
 @app.route("/report-closed/<cafe_id>", methods=["DELETE"])
 def remove_cafe(cafe_id):
     cafe_to_remove = db.session.query(Cafe).get(cafe_id)
-    if cafe_to_remove:
-        db.session.delete(cafe_to_remove)
-        db.session.commit()
-        return jsonify(response={"success": "successfully deleted record"})
+    auth = "top-secret-api-key"
+    if request.args.get("api-key") == auth:
+        if cafe_to_remove:
+            db.session.delete(cafe_to_remove)
+            db.session.commit()
+            return jsonify(response={"success": "successfully deleted record"})
+        else:
+            return jsonify(response={"failure": "no cafe with that id"}), 404
     else:
-        return jsonify(response={"failure": "no cafe with that id"}), 404
+        return jsonify(response={"failure": "not authorised to make edits"}), 401
+
 
 if __name__ == '__main__':
     app.run(debug=True)
