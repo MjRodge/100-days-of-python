@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
+from requests import request
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditor, CKEditorField
@@ -52,6 +53,12 @@ def get_all_posts():
 def show_post(index):
     requested_post = db.session.query(BlogPost).get(index)
     return render_template("post.html", post=requested_post)
+
+
+@app.route("/make_post", methods=["GET", "POST"])
+def make_post():
+    post_form = CreatePostForm()
+    return render_template("make-post.html", form=post_form)
 
 
 @app.route("/edit_post")

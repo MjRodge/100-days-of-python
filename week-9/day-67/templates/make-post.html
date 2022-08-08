@@ -21,7 +21,14 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         
-          <!-- This is where the form will go -->
+          <form action="" method="post">
+            {{ form.title.label }}: {{ form.title }} <br />
+            {{ form.subtitle.label }}: {{ form.subtitle }} <br />
+            {{ form.author.label }}: {{ form.author }} <br />
+            {{ form.img_url.label }}: {{ form.img_url }} <br />
+            {{ form.body.label }}: {{ form.body }} <br />
+            {{ form.submit }}
+          </form>
 
       </div>
     </div>
