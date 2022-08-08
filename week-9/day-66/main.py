@@ -1,5 +1,6 @@
 from crypt import methods
 import json
+from urllib import response
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import random
@@ -98,7 +99,20 @@ def add_new_cafe():
     print(new_cafe.name)
     return jsonify(response={"success": "new cafe succesfully submitted"})
 
+
 ## HTTP PUT/PATCH - Update Record
+
+# PATCH update coffee price
+@app.route("/update-price/<cafe_id>", methods=["PATCH"])
+def update_coffee_price(cafe_id):
+    cafe_to_edit = db.session.query(Cafe).get(cafe_id)
+    if cafe_to_edit:
+        cafe_to_edit.coffee_price = request.args.get("price")
+        db.session.commit()
+        return jsonify(response={"success": "successfully updated record"})
+    else:
+        return jsonify(response={"failure": "no cafe with that id"})
+
 
 ## HTTP DELETE - Delete Record
 
