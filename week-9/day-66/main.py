@@ -111,7 +111,7 @@ def update_coffee_price(cafe_id):
         db.session.commit()
         return jsonify(response={"success": "successfully updated record"})
     else:
-        return jsonify(response={"failure": "no cafe with that id"})
+        return jsonify(response={"failure": "no cafe with that id"}), 404
 
 
 ## HTTP DELETE - Delete Record
