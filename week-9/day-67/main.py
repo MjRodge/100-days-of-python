@@ -1,3 +1,4 @@
+from crypt import methods
 from datetime import date
 from operator import index
 from time import strftime
@@ -41,18 +42,24 @@ class CreatePostForm(FlaskForm):
     submit = SubmitField("Submit Post")
 
 
+## Routes
+
+# GET index
 @app.route('/')
 def get_all_posts():
     posts = db.session.query(BlogPost).all()
     return render_template("index.html", all_posts=posts)
 
 
+# GET single post by id
 @app.route("/post/<int:index>")
 def show_post(index):
     requested_post = db.session.query(BlogPost).get(index)
     return render_template("post.html", post=requested_post)
 
 
+# GET form for creating a new post
+# POST write form contents to db
 @app.route("/make-post", methods=["GET", "POST"])
 def make_post():
     post_form = CreatePostForm()
@@ -73,7 +80,9 @@ def make_post():
     return render_template("make-post.html", form=post_form)
 
 
-@app.route("/edit-post")
+# GET form to edit selected post
+# POST send updates to row in db
+@app.route("/edit-post", methods=["GET", "POST"])
 def edit_post():
     post_to_edit = request.args.get("post_id")
     requested_post = db.session.query(BlogPost).get(post_to_edit)
